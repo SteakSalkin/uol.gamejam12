@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://h6krtr40hd7n"]
+[gd_scene load_steps=9 format=3 uid="uid://h6krtr40hd7n"]
 
 [ext_resource type="Script" uid="uid://og8s8q80k7fi" path="res://player/player2.gd" id="1_d1dig"]
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://ck65eujffmxew" path="res://assets/sunglasses.png" id="3_d1dig"]
+[ext_resource type="Texture2D" uid="uid://c3ll05mkuydr1" path="res://assets/controller.png" id="4_m4sf7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d1dig"]
 radius = 192.37463
@@ -13,6 +14,9 @@ radius = 150.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 24.999998
 height = 49.999996
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xmo7"]
+radius = 35.510563
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_d1dig")
@@ -66,7 +70,67 @@ max_value = 20.0
 step = 1.0
 value = 20.0
 
+[node name="controller" type="Node" parent="."]
+
+[node name="controller" type="TextureRect" parent="controller"]
+offset_left = -2122.0
+offset_top = 359.0
+offset_right = -1277.0
+offset_bottom = 1191.0
+texture = ExtResource("4_m4sf7")
+stretch_mode = 4
+
+[node name="Button left" type="Area2D" parent="controller"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/Button left"]
+position = Vector2(-1917, 755)
+shape = SubResource("CircleShape2D_2xmo7")
+
+[node name="Button up" type="Area2D" parent="controller"]
+collision_layer = 512
+collision_mask = 640
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/Button up"]
+position = Vector2(-1866, 706)
+shape = SubResource("CircleShape2D_2xmo7")
+
+[node name="Button right" type="Area2D" parent="controller"]
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/Button right"]
+position = Vector2(-1814, 755)
+shape = SubResource("CircleShape2D_2xmo7")
+
+[node name="Button down" type="Area2D" parent="controller"]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/Button down"]
+position = Vector2(-1865, 804)
+shape = SubResource("CircleShape2D_2xmo7")
+
+[node name="Button hit" type="Area2D" parent="controller"]
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="controller/Button hit"]
+position = Vector2(-1598, 756)
+shape = SubResource("CircleShape2D_2xmo7")
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="Healbox" to="." method="_on_healbox_area_entered"]
 [connection signal="area_exited" from="Healbox" to="." method="_on_healbox_area_exited"]
+[connection signal="area_entered" from="controller/Button left" to="." method="_on_button_left_area_entered"]
+[connection signal="area_exited" from="controller/Button left" to="." method="_on_button_left_area_exited"]
+[connection signal="area_entered" from="controller/Button up" to="." method="_on_button_up_area_entered"]
+[connection signal="area_exited" from="controller/Button up" to="." method="_on_button_up_area_exited"]
+[connection signal="area_entered" from="controller/Button right" to="." method="_on_button_right_area_entered"]
+[connection signal="area_exited" from="controller/Button right" to="." method="_on_button_right_area_exited"]
+[connection signal="area_entered" from="controller/Button down" to="." method="_on_button_down_area_entered"]
+[connection signal="area_exited" from="controller/Button down" to="." method="_on_button_down_area_exited"]
+[connection signal="area_entered" from="controller/Button hit" to="." method="_on_button_hit_area_entered"]
+[connection signal="area_exited" from="controller/Button hit" to="." method="_on_button_hit_area_exited"]
