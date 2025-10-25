@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckdj6vcka7v2d"]
+[gd_scene load_steps=7 format=3 uid="uid://ckdj6vcka7v2d"]
 
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da1tss52h4lpf" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d3s86lmbfol3a" path="res://assets/russicher_hut.png" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://b4t4atquhjmx4" path="res://assets/kommunisten_symbol.svg" id="4_yw30f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw30f"]
+radius = 192.37463
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 24.999998
@@ -11,6 +14,13 @@ height = 49.999996
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rkbax")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_yw30f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
@@ -39,3 +49,19 @@ position = Vector2(31.000004, -21)
 rotation = -0.25830874
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_yw30f")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 900
+offset_left = -226.0
+offset_top = -288.0
+offset_right = 225.0
+offset_bottom = -215.0
+theme_override_colors/font_color = Color(0.0028022618, 9.165524e-10, 4.2302417e-10, 1)
+theme_override_font_sizes/font_size = 1
+max_value = 20.0
+step = 1.0
+value = 20.0
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
