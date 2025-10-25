@@ -8,16 +8,16 @@ const MAX_JUMP_VELOCITY = -800
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor() and not Input.is_action_pressed("ui_accept"):
+	if not is_on_floor() and not Input.is_action_pressed("player2up"):
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_pressed("ui_accept") and velocity.y > MAX_JUMP_VELOCITY:
+	if Input.is_action_pressed("player2up") and velocity.y > MAX_JUMP_VELOCITY:
 		velocity.y += JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("player2left", "player2right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
