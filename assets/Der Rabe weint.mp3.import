@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dyxuvkd8rjwmo"
+path="res://.godot/imported/Der Rabe weint.mp3-46fa3f11b37b80213ebb7fcd2d02a98e.mp3str"
+
+[deps]
+
+source_file="res://assets/Der Rabe weint.mp3"
+dest_files=["res://.godot/imported/Der Rabe weint.mp3-46fa3f11b37b80213ebb7fcd2d02a98e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
