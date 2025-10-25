@@ -1,25 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckdj6vcka7v2d"]
+[gd_scene load_steps=6 format=3 uid="uid://ckdj6vcka7v2d"]
 
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da1tss52h4lpf" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://d3s86lmbfol3a" path="res://assets/russicher_hut.png" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://b4t4atquhjmx4" path="res://assets/kommunisten_symbol.svg" id="4_yw30f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
-radius = 30.0
-height = 68.0
+radius = 24.999998
+height = 49.999996
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_oul6g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+z_index = 100
+zoom = Vector2(0.6, 0.6)
 limit_left = 0
 limit_top = 0
 limit_right = 0
 limit_bottom = 0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(69.00001, -145.00002)
+rotation = -0.38920844
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_g1dw6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(31.000004, -21)
+rotation = -0.25830874
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_yw30f")
