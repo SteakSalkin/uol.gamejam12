@@ -26,7 +26,7 @@ shape = SubResource("CircleShape2D_yw30f")
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_rkbax")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Pidgeon" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_oul6g")
 
@@ -38,13 +38,13 @@ limit_top = 0
 limit_right = 0
 limit_bottom = 0
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Hat" type="Sprite2D" parent="."]
 position = Vector2(69.00001, -145.00002)
 rotation = -0.38920844
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_g1dw6")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sticker" type="Sprite2D" parent="."]
 position = Vector2(31.000004, -21)
 rotation = -0.25830874
 scale = Vector2(0.2, 0.2)

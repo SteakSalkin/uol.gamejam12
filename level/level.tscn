@@ -1018,11 +1018,13 @@ sources/7 = SubResource("TileSetAtlasSource_0v1st")
 texture = ExtResource("7_ivpvi")
 texture_region_size = Vector2i(270, 180)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(135, -90, 135, -67.5, -101.25, -67.5, -101.25, 90, -135, 90, -135, -90)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(135, 90, 101.25, 90, 101.25, -67.5, -135, -67.5, -135, -90, 135, -90)
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-135, 45, 135, 45, 135, 90, -135, 90)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(135, 90, 135, 45, -101.25, 45, -101.25, -90, -135, -90, -135, 90)
 1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-135, 45, 135, 45, 135, 90, -135, 90)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(101.25, -90, 135, -90, 135, 90, -135, 90, -135, 45, 101.25, 45)
 
 [sub_resource type="TileSet" id="TileSet_44x8d"]
 tile_size = Vector2i(270, 180)

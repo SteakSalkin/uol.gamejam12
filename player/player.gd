@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 600.0
-const JUMP_VELOCITY = -80.0
+const JUMP_VELOCITY = -600.0
 const MAX_JUMP_VELOCITY = -800
 
 var is_flipped = false
@@ -16,6 +16,8 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_pressed("player1up") and velocity.y > MAX_JUMP_VELOCITY:
 		velocity.y += JUMP_VELOCITY
+	if Input.is_action_pressed("player1down") and velocity.y > MAX_JUMP_VELOCITY:
+		velocity.y -= JUMP_VELOCITY/2
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -31,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	if Input.is_action_just_pressed("player2attack") and is_touching_player:
+	if Input.is_action_just_pressed("player1attack") and is_touching_player:
 		get_damage(1)
 
 	move_and_slide()
@@ -43,7 +45,7 @@ func get_damage(damage: int) -> void:
 		die()
 
 func die() -> void:
-	hide()
+	queue_free()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	is_touching_player = true
