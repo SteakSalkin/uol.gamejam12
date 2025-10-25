@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drrrv3mb563sh"
-valid=false
+uid="uid://bil2i2fvnf0d0"
+path="res://.godot/imported/pigeon-drone 2.png-7854617f9b737f7ff7c75bc3357745eb.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/pigeon-drone.png"
+source_file="res://assets/pigeon-drone 2.png"
+dest_files=["res://.godot/imported/pigeon-drone 2.png-7854617f9b737f7ff7c75bc3357745eb.ctex"]
 
 [params]
 
