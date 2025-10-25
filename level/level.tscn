@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bb0kw0xl5qc8x"]
+[gd_scene load_steps=29 format=4 uid="uid://bb0kw0xl5qc8x"]
 
 [ext_resource type="PackedScene" uid="uid://h6krtr40hd7n" path="res://player/player2.tscn" id="1_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://ckdj6vcka7v2d" path="res://player/player.tscn" id="1_7lnir"]
@@ -1006,12 +1006,15 @@ sources/1 = SubResource("TileSetAtlasSource_ivpvi")
 texture = ExtResource("6_44x8d")
 texture_region_size = Vector2i(600, 600)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(150, -75, -225, 75, 300, 75, 300, -75)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-300, -75, -300, 75, 225, 75, -75, -75)
 0:1/0 = 0
 1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_cw150"]
 tile_size = Vector2i(600, 600)
+physics_layer_0/collision_layer = 1
 sources/7 = SubResource("TileSetAtlasSource_0v1st")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6gtgk"]
@@ -1040,6 +1043,18 @@ texture_region_size = Vector2i(3000, 3600)
 [sub_resource type="TileSet" id="TileSet_xii2b"]
 tile_size = Vector2i(3000, 3600)
 sources/0 = SubResource("TileSetAtlasSource_cw150")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rhqlf"]
+texture = ExtResource("12_rhqlf")
+texture_region_size = Vector2i(626, 375)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-210.81577, -67.31932, 19.487183, -102.75054, 93.89276, -102.75054, 193.10022, -124.00928, 118.69464, -83.263374, 47.832153, -92.12118, -77.94867, -69.09088)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSet" id="TileSet_l5lfc"]
+tile_size = Vector2i(626, 375)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_rhqlf")
 
 [node name="level" type="Node2D"]
 
@@ -1104,8 +1119,9 @@ rotation = -0.7853982
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("11_xii2b")
 
-[node name="StromLeitung" type="Sprite2D" parent="."]
+[node name="StromLeitung" type="TileMapLayer" parent="."]
 z_index = -1
-position = Vector2(14.5, -300)
+position = Vector2(-2350, 900)
 scale = Vector2(7.2316294, 6)
-texture = ExtResource("12_rhqlf")
+tile_map_data = PackedByteArray("AAAAAP//AQAAAAAAAAA=")
+tile_set = SubResource("TileSet_l5lfc")
