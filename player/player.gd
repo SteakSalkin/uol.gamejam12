@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 const SPEED = 1200.0
 const JUMP_VELOCITY = -600.0
-const MAX_JUMP_VELOCITY = -800
+const MAX_JUMP_VELOCITY = -800.0
+const MAX_HEALTH = 20.0
+const HEAL_AMOUNT = 1.0
 
 var is_flipped = false
-var health = 20
+var health = MAX_HEALTH
 var is_touching_player = false
+var is_touching_healing = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -35,6 +38,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("player1attack") and is_touching_player:
 		get_damage(1)
+	
+	if is_touching_healing:
+		get_healed(HEAL_AMOUNT * delta)
 
 	move_and_slide()
 
@@ -44,6 +50,11 @@ func get_damage(damage: int) -> void:
 	if health < 1:
 		die()
 
+func get_healed(heal: float) -> void:
+	if health < MAX_HEALTH:
+		health += heal
+	$HealthBar.value = health
+
 func die() -> void:
 	queue_free()
 
@@ -52,3 +63,9 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func _on_hitbox_area_exited(area: Area2D) -> void:
 	is_touching_player = false
+
+func _on_healbox_area_entered(area: Area2D) -> void:
+	is_touching_healing = true
+
+func _on_healbox_area_exited(area: Area2D) -> void:
+	is_touching_healing = false

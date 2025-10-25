@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bb0kw0xl5qc8x"]
+[gd_scene load_steps=31 format=4 uid="uid://bb0kw0xl5qc8x"]
 
 [ext_resource type="PackedScene" uid="uid://h6krtr40hd7n" path="res://player/player2.tscn" id="1_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://ckdj6vcka7v2d" path="res://player/player.tscn" id="1_7lnir"]
@@ -1052,11 +1052,23 @@ texture_region_size = Vector2i(626, 375)
 0:0/0/physics_layer_0/polygon_0/one_way = true
 0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(112.05127, -97.43588, 174.41022, -116.923065, 135.43588, -91.58973, 61.384613, -89.641014)
 0:0/0/physics_layer_0/polygon_1/one_way = true
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-182.20511, -84.76922, -22.410263, -102.30768, -26.307693, -80.87179, -172.46152, -67.23077)
+0:0/0/physics_layer_1/polygon_1/points = PackedVector2Array(59.435883, -106.20512, 156.87177, -123.743576, 156.87177, -96.461525, 65.28204, -84.76922)
 
 [sub_resource type="TileSet" id="TileSet_l5lfc"]
 tile_size = Vector2i(626, 375)
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 8
+physics_layer_1/collision_mask = 8
 sources/1 = SubResource("TileSetAtlasSource_rhqlf")
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rhqlf"]
+a = Vector2(293, -778)
+b = Vector2(1132, -889)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_l5lfc"]
+a = Vector2(-1383, -656)
+b = Vector2(-185, -778)
 
 [node name="level" type="Node2D"]
 
@@ -1127,3 +1139,15 @@ position = Vector2(-2350, 900)
 scale = Vector2(7.2316294, 6)
 tile_map_data = PackedByteArray("AAAAAP//AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_l5lfc")
+
+[node name="Healbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Healbox"]
+shape = SubResource("SegmentShape2D_rhqlf")
+debug_color = Color(0.93620837, 0.23923486, 0.24048677, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Healbox"]
+shape = SubResource("SegmentShape2D_l5lfc")
+debug_color = Color(0.93620837, 0.23923486, 0.24048677, 0.41960785)
