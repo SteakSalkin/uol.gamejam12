@@ -10,6 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+const loading_scene_path = "res://loading_screen.tscn"
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file(loading_scene_path)

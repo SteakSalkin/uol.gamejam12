@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://d32o68iy8va4r"]
+[gd_scene load_steps=2 format=3 uid="uid://d32o68iy8va4r"]
+
+[ext_resource type="Script" uid="uid://bi3v61c1mkvn3" path="res://start_scene.gd" id="1_mbe3m"]
 
 [node name="start_scene" type="Control"]
 layout_mode = 3
@@ -7,8 +9,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mbe3m")
 
-[node name="loading_screen" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+keep_pressed_outside = true
+text = "Load scene"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
