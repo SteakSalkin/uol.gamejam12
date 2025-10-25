@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Sprite2D.rotate(0.1 * delta)
+	$Zahnrad.rotate(2 * delta)
 
 
 func _on_timer_timeout() -> void:
