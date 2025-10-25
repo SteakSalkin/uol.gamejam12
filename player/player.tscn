@@ -40,6 +40,18 @@ shape = SubResource("CapsuleShape2D_rkbax")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_oul6g")
 
+[node name="Sticker" type="Sprite2D" parent="Pidgeon"]
+position = Vector2(62.000008, -42)
+rotation = -0.25830874
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_yw30f")
+
+[node name="Hat" type="Sprite2D" parent="Pidgeon"]
+position = Vector2(138.00002, -290.00003)
+rotation = -0.38920844
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_g1dw6")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 100
 zoom = Vector2(0.45, 0.45)
@@ -47,18 +59,6 @@ limit_left = 0
 limit_top = 0
 limit_right = 0
 limit_bottom = 0
-
-[node name="Hat" type="Sprite2D" parent="."]
-position = Vector2(69.00001, -145.00002)
-rotation = -0.38920844
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_g1dw6")
-
-[node name="Sticker" type="Sprite2D" parent="."]
-position = Vector2(31.000004, -21)
-rotation = -0.25830874
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_yw30f")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

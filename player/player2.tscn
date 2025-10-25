@@ -35,9 +35,15 @@ shape = SubResource("CircleShape2D_m4sf7")
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_rkbax")
 
-[node name="Pigeon" type="Sprite2D" parent="."]
+[node name="Pidgeon" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_oul6g")
+
+[node name="Sunglasses" type="Sprite2D" parent="Pidgeon"]
+position = Vector2(150.00002, -246)
+rotation = -0.25830874
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_d1dig")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 100
@@ -46,12 +52,6 @@ limit_left = 0
 limit_top = 0
 limit_right = 0
 limit_bottom = 0
-
-[node name="Sunglasses" type="Sprite2D" parent="."]
-position = Vector2(75.00001, -123)
-rotation = -0.25830874
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_d1dig")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

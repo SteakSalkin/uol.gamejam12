@@ -1,3 +1,5 @@
+class_name Player2
+
 extends CharacterBody2D
 
 const SPEED = 1200.0
@@ -10,6 +12,9 @@ var is_flipped = false
 var health = MAX_HEALTH
 var is_touching_player = false
 var is_touching_healing = false
+var backflip_rotation = 0.0
+var attack_rotation = 0.0
+var attack_animation_wait = 0.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -37,17 +42,40 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if Input.is_action_just_pressed("player2attack") and is_touching_player:
+		animation_taking_damage()
+		get_node("/root/level/Player").animation_attack()
 		get_damage(1)
-	
+
 	if is_touching_healing:
 		get_healed(HEAL_AMOUNT * delta)
 
+	if attack_rotation > 0:
+		if attack_animation_wait <= 0:
+			attack_animation_wait = 0.01
+			attack_rotation -= 0.1
+			$Pidgeon.rotation = attack_rotation
+		attack_animation_wait -= delta
+
+	if backflip_rotation > 0:
+		backflip_rotation -= int(100 * delta)
+		$Pidgeon.rotation = backflip_rotation
+
 	move_and_slide()
+
+func animation_attack() -> void:
+	attack_rotation = 1.0
+
+func animation_taking_damage() -> void:
+	pass
+
+func animation_backflip() -> void:
+	backflip_rotation = 10
 
 func get_damage(damage: int) -> void:
 	health -= damage
 	$HealthBar.value = health
 	if health < 1:
+		get_node("/root/level/Player").animation_backflip()
 		die()
 
 func get_healed(heal: float) -> void:
