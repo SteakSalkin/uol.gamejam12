@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -400.0
 const MAX_JUMP_VELOCITY = -600.0
 const MAX_HEALTH = 20.0
 const HEAL_AMOUNT = 2.0
-const DAMAGE_AMOUNT = 2.0
+const DAMAGE_AMOUNT = 1.0
 
 var is_flipped = false
 var health = MAX_HEALTH
@@ -57,8 +57,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	if button_hit and is_touching_player:
-		button_hit = false
+	if button_hit and is_touching_player and Input.is_action_just_pressed("player1attack"):
+		#button_hit = false
 		get_node("/root/level/Player2").animation_taking_damage()
 		animation_attack()
 		get_node("/root/level/Player2").get_damage(DAMAGE_AMOUNT)
@@ -93,6 +93,7 @@ func get_damage(damage: int) -> void:
 	$HealthBar.value = health
 	if health < 1:
 		get_node("/root/level/Player2").animation_backflip()
+		get_node("/root/level").player_1_wins()
 		die()
 
 func get_healed(heal: float) -> void:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=4 uid="uid://bb0kw0xl5qc8x"]
+[gd_scene load_steps=36 format=4 uid="uid://bb0kw0xl5qc8x"]
 
 [ext_resource type="PackedScene" uid="uid://h6krtr40hd7n" path="res://player/player2.tscn" id="1_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://ckdj6vcka7v2d" path="res://player/player.tscn" id="1_7lnir"]
+[ext_resource type="Script" uid="uid://d0iaojq63mw70" path="res://level/level.gd" id="1_fm1jd"]
 [ext_resource type="Texture2D" uid="uid://c15cpd5x0l0hj" path="res://assets/tilemap/TX Tileset Grass.png" id="2_5gx2l"]
 [ext_resource type="PackedScene" uid="uid://7b4206mfux5" path="res://player/cat_2.tscn" id="2_m3nah"]
 [ext_resource type="PackedScene" uid="uid://bl3gkcoyu088s" path="res://player/cat_1.tscn" id="3_l5lfc"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dkcv4ghajwkgp" path="res://assets/man_holding_a_speech.png.png" id="10_cw150"]
 [ext_resource type="Texture2D" uid="uid://crvn2w6acff1v" path="res://assets/us_flag.png" id="11_xii2b"]
 [ext_resource type="Texture2D" uid="uid://sp3e0h2vvjlp" path="res://assets/hochspannungsleitungen.png" id="12_rhqlf"]
+[ext_resource type="Texture2D" uid="uid://bt3qu43i0oe8s" path="res://assets/echo_wave.png" id="16_7jqyl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qohg2"]
 texture = ExtResource("2_5gx2l")
@@ -1072,7 +1074,15 @@ b = Vector2(1132, -889)
 a = Vector2(-1383, -656)
 b = Vector2(-185, -778)
 
+[sub_resource type="LabelSettings" id="LabelSettings_m3nah"]
+font_size = 192
+font_color = Color(0, 0, 0, 1)
+outline_size = 32
+shadow_size = 64
+shadow_color = Color(0, 0, 0, 0.7490196)
+
 [node name="level" type="Node2D"]
+script = ExtResource("1_fm1jd")
 
 [node name="Player2" parent="." instance=ExtResource("1_6gtgk")]
 z_index = 1000
@@ -1161,3 +1171,50 @@ debug_color = Color(0.93620837, 0.23923486, 0.24048677, 0.41960785)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Healbox"]
 shape = SubResource("SegmentShape2D_l5lfc")
 debug_color = Color(0.93620837, 0.23923486, 0.24048677, 0.41960785)
+
+[node name="Winning massage" type="Node2D" parent="."]
+position = Vector2(-1000, -100)
+
+[node name="Player 1 Won" type="Label" parent="Winning massage"]
+visible = false
+z_index = 4000
+offset_right = 1483.0
+offset_bottom = 175.0
+text = "Spieler 1 hat gewonnen!"
+label_settings = SubResource("LabelSettings_m3nah")
+
+[node name="Player 2 Won" type="Label" parent="Winning massage"]
+visible = false
+z_index = 4000
+offset_right = 1483.0
+offset_bottom = 175.0
+text = "Spieler 2 hat gewonnen!"
+label_settings = SubResource("LabelSettings_m3nah")
+
+[node name="Particle" type="Node2D" parent="."]
+z_index = 100
+
+[node name="CPUParticlesLeft" type="CPUParticles2D" parent="Particle"]
+amount = 4
+texture = ExtResource("16_7jqyl")
+preprocess = 0.13
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angle_min = -90.0
+angle_max = -90.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+
+[node name="CPUParticlesRight" type="CPUParticles2D" parent="Particle"]
+amount = 4
+texture = ExtResource("16_7jqyl")
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angle_min = 90.0
+angle_max = 90.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
