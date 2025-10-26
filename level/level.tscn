@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://bb0kw0xl5qc8x"]
+[gd_scene load_steps=38 format=4 uid="uid://bb0kw0xl5qc8x"]
 
 [ext_resource type="PackedScene" uid="uid://h6krtr40hd7n" path="res://player/player2.tscn" id="1_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://ckdj6vcka7v2d" path="res://player/player.tscn" id="1_7lnir"]
@@ -1048,6 +1048,9 @@ texture_region_size = Vector2i(3000, 3600)
 tile_size = Vector2i(3000, 3600)
 sources/0 = SubResource("TileSetAtlasSource_cw150")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jqyl"]
+radius = 2400.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rhqlf"]
 texture = ExtResource("12_rhqlf")
 texture_region_size = Vector2i(626, 375)
@@ -1081,24 +1084,31 @@ outline_size = 32
 shadow_size = 64
 shadow_color = Color(0, 0, 0, 0.7490196)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7jqyl"]
+font_size = 128
+font_color = Color(0, 0, 0, 1)
+outline_size = 24
+shadow_size = 48
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="level" type="Node2D"]
 script = ExtResource("1_fm1jd")
 
 [node name="Player2" parent="." instance=ExtResource("1_6gtgk")]
 z_index = 1000
-position = Vector2(-700, 200)
+position = Vector2(-1000, 200)
 
-[node name="cat2" parent="." instance=ExtResource("2_m3nah")]
+[node name="cat2" parent="." instance=ExtResource("3_l5lfc")]
 z_index = 2000
-position = Vector2(1700, 600)
+position = Vector2(-1700, 600)
 
 [node name="Player" parent="." instance=ExtResource("1_7lnir")]
 z_index = 100
-position = Vector2(700, 200)
+position = Vector2(1000, 200)
 
-[node name="cat1" parent="." instance=ExtResource("3_l5lfc")]
+[node name="cat1" parent="." instance=ExtResource("2_m3nah")]
 z_index = 2000
-position = Vector2(-1700, 600)
+position = Vector2(1700, 600)
 
 [node name="Map" type="Node2D" parent="."]
 
@@ -1145,6 +1155,13 @@ z_index = 1
 position = Vector2(1, 152)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("10_cw150")
+
+[node name="Area2D" type="Area2D" parent="SpeechGuy"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeechGuy/Area2D"]
+shape = SubResource("CircleShape2D_7jqyl")
 
 [node name="UsFlag" type="Sprite2D" parent="."]
 z_index = 3
@@ -1195,6 +1212,7 @@ label_settings = SubResource("LabelSettings_m3nah")
 z_index = 100
 
 [node name="CPUParticlesLeft" type="CPUParticles2D" parent="Particle"]
+position = Vector2(40, 0)
 amount = 4
 texture = ExtResource("16_7jqyl")
 preprocess = 0.13
@@ -1208,6 +1226,7 @@ scale_amount_min = 0.2
 scale_amount_max = 0.3
 
 [node name="CPUParticlesRight" type="CPUParticles2D" parent="Particle"]
+position = Vector2(-40, 0)
 amount = 4
 texture = ExtResource("16_7jqyl")
 direction = Vector2(-1, 0)
@@ -1218,3 +1237,12 @@ angle_min = 90.0
 angle_max = 90.0
 scale_amount_min = 0.2
 scale_amount_max = 0.3
+
+[node name="Remaining Time" type="Label" parent="."]
+z_index = 4096
+offset_left = -589.0
+offset_top = -1181.0
+offset_right = 1012.0
+offset_bottom = -1006.0
+text = "200  Sekunden Verbleiben"
+label_settings = SubResource("LabelSettings_7jqyl")

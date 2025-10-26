@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckdj6vcka7v2d"]
+[gd_scene load_steps=13 format=3 uid="uid://ckdj6vcka7v2d"]
 
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da1tss52h4lpf" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d3s86lmbfol3a" path="res://assets/russicher_hut.png" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://b4t4atquhjmx4" path="res://assets/kommunisten_symbol.svg" id="4_yw30f"]
 [ext_resource type="Texture2D" uid="uid://c3ll05mkuydr1" path="res://assets/controller.png" id="5_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://cqdog8gx6osys" path="res://icon.svg" id="6_g6k8r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 24.999998
+height = 49.999996
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw30f"]
 radius = 192.37463
@@ -12,15 +17,28 @@ radius = 192.37463
 [sub_resource type="CircleShape2D" id="CircleShape2D_qjkh3"]
 radius = 150.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
-radius = 24.999998
-height = 49.999996
+[sub_resource type="CircleShape2D" id="CircleShape2D_boad6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g6k8r"]
 radius = 35.510563
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_boad6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g6k8r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rkbax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
@@ -36,9 +54,14 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Healbox"]
 shape = SubResource("CircleShape2D_qjkh3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(5, 5)
-shape = SubResource("CapsuleShape2D_rkbax")
+[node name="SoundTransmitterBox" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundTransmitterBox"]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_boad6")
+debug_color = Color(3.1044335e-06, 0.6509481, 0.07858259, 0.41960785)
 
 [node name="Pidgeon" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -127,10 +150,27 @@ collision_mask = 4096
 position = Vector2(1806, 756)
 shape = SubResource("CircleShape2D_g6k8r")
 
+[node name="sound_transmitter" type="Node" parent="."]
+
+[node name="sound_transmitter_remaining_time" type="ProgressBar" parent="sound_transmitter"]
+modulate = Color(0, 18.892157, 0, 1)
+offset_left = 1474.0
+offset_top = 451.0
+offset_right = 1919.0
+offset_bottom = 534.0
+theme_override_font_sizes/font_size = 1
+value = 100.0
+
+[node name="Gedankenblase" type="AnimatedSprite2D" parent="sound_transmitter"]
+position = Vector2(1700, 300)
+sprite_frames = SubResource("SpriteFrames_boad6")
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="Healbox" to="." method="_on_healbox_area_entered"]
 [connection signal="area_exited" from="Healbox" to="." method="_on_healbox_area_exited"]
+[connection signal="area_entered" from="SoundTransmitterBox" to="." method="_on_sound_transmitter_box_area_entered"]
+[connection signal="area_exited" from="SoundTransmitterBox" to="." method="_on_sound_transmitter_box_area_exited"]
 [connection signal="area_entered" from="controller/Button left" to="." method="_on_button_left_area_entered"]
 [connection signal="area_exited" from="controller/Button left" to="." method="_on_button_left_area_exited"]
 [connection signal="area_entered" from="controller/Button up" to="." method="_on_button_up_area_entered"]

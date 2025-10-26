@@ -9,6 +9,8 @@ const MAX_HEALTH = 20.0
 const HEAL_AMOUNT = 2.0
 const DAMAGE_AMOUNT = 1.0
 
+const SOUND_TRANSMITTER_TIME = 100.0
+
 var is_flipped = false
 var health = MAX_HEALTH
 var is_touching_player = false
@@ -25,6 +27,9 @@ var button_down = false
 var button_hit = false
 
 var direction
+
+var sound_transmitter = false
+var sound_transmitter_remaining_time = SOUND_TRANSMITTER_TIME
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -76,6 +81,13 @@ func _physics_process(delta: float) -> void:
 	if backflip_rotation > 0:
 		backflip_rotation -= int(100 * delta)
 		$Pidgeon.rotation = backflip_rotation
+
+	if sound_transmitter:
+		sound_transmitter_remaining_time -= 4 * delta
+		$sound_transmitter/sound_transmitter_remaining_time.value = sound_transmitter_remaining_time
+		if sound_transmitter_remaining_time < 1 and sound_transmitter_remaining_time > -100:
+			sound_transmitter_remaining_time = -1000
+			get_node("/root/level/Player2").get_damage(1000)
 
 	move_and_slide()
 
@@ -145,3 +157,10 @@ func _on_button_hit_area_entered(area: Area2D) -> void:
 
 func _on_button_hit_area_exited(area: Area2D) -> void:
 	button_hit = false
+
+# sound transmitter
+func _on_sound_transmitter_box_area_entered(area: Area2D) -> void:
+	sound_transmitter = true
+
+func _on_sound_transmitter_box_area_exited(area: Area2D) -> void:
+	sound_transmitter = false

@@ -5,21 +5,25 @@
 [ext_resource type="Texture2D" uid="uid://ck65eujffmxew" path="res://assets/sunglasses.png" id="3_d1dig"]
 [ext_resource type="Texture2D" uid="uid://c3ll05mkuydr1" path="res://assets/controller.png" id="4_m4sf7"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 24.999998
+height = 49.999996
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_d1dig"]
 radius = 192.37463
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4sf7"]
 radius = 150.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
-radius = 24.999998
-height = 49.999996
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xmo7"]
 radius = 35.510563
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_d1dig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 32
@@ -34,10 +38,6 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Healbox"]
 shape = SubResource("CircleShape2D_m4sf7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(5, 5)
-shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Pidgeon" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
