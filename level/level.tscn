@@ -1261,4 +1261,4 @@ label_settings = SubResource("LabelSettings_7jqyl")
 [node name="items" type="Node2D" parent="."]
 
 [node name="ShieldItem" parent="items" instance=ExtResource("19_tv7ir")]
-position = Vector2(0, 900)
+position = Vector2(0, 1000)
