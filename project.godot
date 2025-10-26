@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="perry"
-run/main_scene="uid://c3u7tje7oe6ak"
+run/main_scene="uid://d32o68iy8va4r"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/show_image=false
 boot_splash/image="res://assets/pigeon-drone.png"
