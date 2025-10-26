@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://og8s8q80k7fi" path="res://player/player2.gd" id="1_d1dig"]
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://ck65eujffmxew" path="res://assets/sunglasses.png" id="3_d1dig"]
-[ext_resource type="Texture2D" uid="uid://c3ll05mkuydr1" path="res://assets/controller.png" id="4_m4sf7"]
+[ext_resource type="Texture2D" uid="uid://bbsydap2g1ent" path="res://assets/controller2.png" id="4_m4sf7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 24.999998
@@ -75,8 +75,8 @@ value = 20.0
 [node name="controller" type="TextureRect" parent="controller"]
 offset_left = -2122.0
 offset_top = 359.0
-offset_right = -1277.0
-offset_bottom = 1191.0
+offset_right = -1143.0
+offset_bottom = 1373.0
 texture = ExtResource("4_m4sf7")
 stretch_mode = 4
 

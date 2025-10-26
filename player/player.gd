@@ -85,9 +85,16 @@ func _physics_process(delta: float) -> void:
 	if sound_transmitter:
 		sound_transmitter_remaining_time -= 4 * delta
 		$sound_transmitter/sound_transmitter_remaining_time.value = sound_transmitter_remaining_time
+		$sound_transmitter/Gedankenblase.show()
+		$sound_transmitter/Gedankenblase/Label.show()
+		$sound_transmitter/Gedankenblase.play("animated")
+		#$sound_transmitter/Gedankenblase.animation = "animated"
 		if sound_transmitter_remaining_time < 1 and sound_transmitter_remaining_time > -100:
 			sound_transmitter_remaining_time = -1000
 			get_node("/root/level/Player2").get_damage(1000)
+	else:
+		$sound_transmitter/Gedankenblase.hide()
+		$sound_transmitter/Gedankenblase/Label.hide()
 
 	move_and_slide()
 

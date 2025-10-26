@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 
 func player_1_wins() -> void:
 	$"Winning massage/Player 1 Won".show()
+	remaining_time = 0
 
 func player_2_wins() -> void:
 	$"Winning massage/Player 2 Won".show()
+	remaining_time = 0
