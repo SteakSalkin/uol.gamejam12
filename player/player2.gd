@@ -113,9 +113,11 @@ func _on_hitbox_area_exited(area: Area2D) -> void:
 
 func _on_healbox_area_entered(area: Area2D) -> void:
 	is_touching_healing = true
+	$HealSound.play()
 
 func _on_healbox_area_exited(area: Area2D) -> void:
 	is_touching_healing = false
+	$HealSound.stop()
 
 func _on_button_left_area_entered(area: Area2D) -> void:
 	button_left = true

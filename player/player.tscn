@@ -68,6 +68,8 @@ shape = SubResource("CapsuleShape2D_rkbax")
 stream = ExtResource("2_8t03j")
 area_mask = 0
 
+[node name="HealSound" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 32
@@ -194,7 +196,7 @@ position = Vector2(1779, 194)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_boad6")
 animation = &"animated"
-frame_progress = 0.26995927
+frame_progress = 0.7602852
 
 [node name="Label" type="Label" parent="sound_transmitter/Gedankenblase"]
 offset_left = -422.0
