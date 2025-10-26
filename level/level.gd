@@ -8,6 +8,7 @@ var remaining_time = REMAINING_TIME
 func _ready() -> void:
 	$"Winning massage/Player 1 Won".hide()
 	$"Winning massage/Player 2 Won".hide()
+	$"Game Music".play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,8 +22,12 @@ func _process(delta: float) -> void:
 
 func player_1_wins() -> void:
 	$"Winning massage/Player 1 Won".show()
+	$"Game Music".stop()
+	$"Winning massage/Winning Sound".play()
 	remaining_time = 0
 
 func player_2_wins() -> void:
 	$"Winning massage/Player 2 Won".show()
+	$"Game Music".stop()
+	$"Winning massage/Winning Sound".play()
 	remaining_time = 0

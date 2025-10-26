@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=4 uid="uid://bb0kw0xl5qc8x"]
+[gd_scene load_steps=39 format=4 uid="uid://bb0kw0xl5qc8x"]
 
 [ext_resource type="PackedScene" uid="uid://h6krtr40hd7n" path="res://player/player2.tscn" id="1_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://ckdj6vcka7v2d" path="res://player/player.tscn" id="1_7lnir"]
 [ext_resource type="Script" uid="uid://d0iaojq63mw70" path="res://level/level.gd" id="1_fm1jd"]
 [ext_resource type="Texture2D" uid="uid://c15cpd5x0l0hj" path="res://assets/tilemap/TX Tileset Grass.png" id="2_5gx2l"]
 [ext_resource type="PackedScene" uid="uid://7b4206mfux5" path="res://player/cat_2.tscn" id="2_m3nah"]
+[ext_resource type="AudioStream" uid="uid://v2yjo8i7v4fr" path="res://assets/hintergrundmusik.mp3" id="2_m5ivw"]
 [ext_resource type="PackedScene" uid="uid://bl3gkcoyu088s" path="res://player/cat_1.tscn" id="3_l5lfc"]
 [ext_resource type="Texture2D" uid="uid://cn241x0hmhipq" path="res://assets/tilemap/TX Tileset Stone Ground.png" id="3_vkbyq"]
 [ext_resource type="Texture2D" uid="uid://c4kcxs1l5ph5l" path="res://assets/tilemap/TX Tileset Wall.png" id="4_ktfr2"]
@@ -1095,6 +1096,9 @@ shadow_color = Color(0, 0, 0, 1)
 [node name="level" type="Node2D"]
 script = ExtResource("1_fm1jd")
 
+[node name="Game Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_m5ivw")
+
 [node name="Player2" parent="." instance=ExtResource("1_6gtgk")]
 z_index = 1000
 position = Vector2(-1000, 200)
@@ -1192,6 +1196,9 @@ debug_color = Color(0.93620837, 0.23923486, 0.24048677, 0.41960785)
 
 [node name="Winning massage" type="Node2D" parent="."]
 position = Vector2(-1000, -100)
+
+[node name="Winning Sound" type="AudioStreamPlayer2D" parent="Winning massage"]
+position = Vector2(1000, 100)
 
 [node name="Player 1 Won" type="Label" parent="Winning massage"]
 visible = false
