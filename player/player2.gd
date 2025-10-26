@@ -80,6 +80,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func animation_attack() -> void:
+	$HitSound.play()
 	attack_rotation = 1.0
 
 func animation_taking_damage() -> void:

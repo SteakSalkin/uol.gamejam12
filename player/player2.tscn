@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://h6krtr40hd7n"]
+[gd_scene load_steps=10 format=3 uid="uid://h6krtr40hd7n"]
 
 [ext_resource type="Script" uid="uid://og8s8q80k7fi" path="res://player/player2.gd" id="1_d1dig"]
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
+[ext_resource type="AudioStream" uid="uid://d3rl6y5fpex0y" path="res://assets/combat sound 2.mp3" id="2_2xmo7"]
 [ext_resource type="Texture2D" uid="uid://ck65eujffmxew" path="res://assets/sunglasses.png" id="3_d1dig"]
 [ext_resource type="Texture2D" uid="uid://bbsydap2g1ent" path="res://assets/controller2.png" id="4_m4sf7"]
 
@@ -24,6 +25,10 @@ script = ExtResource("1_d1dig")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
 shape = SubResource("CapsuleShape2D_rkbax")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2xmo7")
+area_mask = 0
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 32
