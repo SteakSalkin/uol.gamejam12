@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckdj6vcka7v2d"]
+[gd_scene load_steps=22 format=3 uid="uid://ckdj6vcka7v2d"]
 
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da1tss52h4lpf" path="res://player/player.gd" id="1_rkbax"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bybcvsjefpqsf" path="res://assets/Gefuellte_Sprechblase3.png" id="7_8t03j"]
 [ext_resource type="Texture2D" uid="uid://cex1uskamo6jd" path="res://assets/Gefuellte_Sprechblase1.png" id="8_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://caade0gafkef" path="res://assets/Gefuellte_Sprechblase.png" id="9_ebec5"]
+[ext_resource type="Texture2D" uid="uid://drjwgvpposmw7" path="res://assets/shield.png" id="12_ebec5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 24.999998
@@ -57,6 +58,11 @@ font_size = 128
 font_color = Color(0, 0, 0, 1)
 outline_size = 24
 shadow_size = 48
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebec5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yllr7"]
+radius = 37.107952
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rkbax")
@@ -210,6 +216,38 @@ offset_bottom = -529.0
 text = "Transmitting..."
 label_settings = SubResource("LabelSettings_hg6s5")
 
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+rotation = 0.27925268
+scale = Vector2(0.74999994, 0.74999994)
+texture = ExtResource("12_ebec5")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(10, 10)
+collision_layer = 0
+collision_mask = 16777216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ebec5")
+
+[node name="items" type="Node" parent="."]
+
+[node name="Shield" type="Area2D" parent="items"]
+visible = false
+collision_layer = 0
+collision_mask = 8192
+
+[node name="Sprite2D" type="Sprite2D" parent="items/Shield"]
+z_index = 100
+position = Vector2(1864, 700)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("12_ebec5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="items/Shield"]
+z_index = 200
+position = Vector2(1863, 697)
+shape = SubResource("CircleShape2D_yllr7")
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="Healbox" to="." method="_on_healbox_area_entered"]
@@ -226,3 +264,6 @@ label_settings = SubResource("LabelSettings_hg6s5")
 [connection signal="area_exited" from="controller/Button down" to="." method="_on_button_down_area_exited"]
 [connection signal="area_entered" from="controller/Button hit" to="." method="_on_button_hit_area_entered"]
 [connection signal="area_exited" from="controller/Button hit" to="." method="_on_button_hit_area_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="items/Shield" to="." method="_on_shield_area_entered"]
+[connection signal="area_exited" from="items/Shield" to="." method="_on_shield_area_exited"]

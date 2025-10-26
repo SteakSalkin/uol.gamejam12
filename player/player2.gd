@@ -28,6 +28,11 @@ var button_right = false
 var button_down = false
 var button_hit = false
 
+var button_shield = false
+var has_shield = false
+var shield = false
+var shield_timer = 250.0
+
 var direction
 
 func _physics_process(delta: float) -> void:
@@ -81,6 +86,17 @@ func _physics_process(delta: float) -> void:
 		backflip_rotation -= int(100 * delta)
 		$Pidgeon.rotation = backflip_rotation
 
+	if has_shield and button_shield and Input.is_action_just_pressed("player2attack") and shield == false:
+		shield = true
+		$Shield.show()
+		$items/Shield.hide()
+	if shield:
+		shield_timer -= 1
+	if shield_timer < 1:
+		shield = false
+		has_shield = false
+		$Shield.hide()
+
 	move_and_slide()
 
 func animation_attack() -> void:
@@ -94,7 +110,10 @@ func animation_backflip() -> void:
 	backflip_rotation = 10
 
 func get_damage(damage: int) -> void:
-	health -= damage
+	if shield:
+		health -= float(damage)/2
+	else:
+		health -= damage
 	$HealthBar.value = health
 	if health < 1:
 		get_node("/root/level/Player").animation_backflip()
@@ -104,6 +123,8 @@ func get_damage(damage: int) -> void:
 func get_healed(heal: float) -> void:
 	if health < MAX_HEALTH:
 		health += heal
+	elif health > MAX_HEALTH:
+		health = MAX_HEALTH
 	if time_between_healing_sounds < 1:
 		time_between_healing_sounds = TIME_BETWEEN_HEALING_SOUNDS
 		$HealSound.play()
@@ -157,3 +178,16 @@ func _on_button_hit_area_entered(area: Area2D) -> void:
 
 func _on_button_hit_area_exited(area: Area2D) -> void:
 	button_hit = false
+
+
+func _on_shield_area_entered(area: Area2D) -> void:
+	button_shield = true
+
+func _on_shield_area_exited(area: Area2D) -> void:
+	button_shield = false
+
+# collect shield
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	has_shield = true
+	get_node("/root/level/items/ShieldItem").delete()
+	$items/Shield.show()

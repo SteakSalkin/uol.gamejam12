@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://h6krtr40hd7n"]
+[gd_scene load_steps=14 format=3 uid="uid://h6krtr40hd7n"]
 
 [ext_resource type="Script" uid="uid://og8s8q80k7fi" path="res://player/player2.gd" id="1_d1dig"]
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ck65eujffmxew" path="res://assets/sunglasses.png" id="3_d1dig"]
 [ext_resource type="AudioStream" uid="uid://ohidbq6bu1na" path="res://assets/Looping sound.wav" id="3_vi4lp"]
 [ext_resource type="Texture2D" uid="uid://bbsydap2g1ent" path="res://assets/controller2.png" id="4_m4sf7"]
+[ext_resource type="Texture2D" uid="uid://drjwgvpposmw7" path="res://assets/shield.png" id="7_k34wu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 24.999998
@@ -19,6 +20,11 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xmo7"]
 radius = 35.510563
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ic8jn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k34wu"]
+radius = 37.107952
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_d1dig")
@@ -131,6 +137,38 @@ collision_mask = 4096
 position = Vector2(-1598, 756)
 shape = SubResource("CircleShape2D_2xmo7")
 
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+rotation = 0.27925268
+scale = Vector2(0.74999994, 0.74999994)
+texture = ExtResource("7_k34wu")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(10, 10)
+collision_layer = 0
+collision_mask = 16777216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ic8jn")
+
+[node name="items" type="Node" parent="."]
+
+[node name="Shield" type="Area2D" parent="items"]
+visible = false
+collision_layer = 0
+collision_mask = 8192
+
+[node name="Sprite2D" type="Sprite2D" parent="items/Shield"]
+z_index = 100
+position = Vector2(-1538, 700)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_k34wu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="items/Shield"]
+z_index = 200
+position = Vector2(-1539, 698)
+shape = SubResource("CircleShape2D_k34wu")
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="area_entered" from="Healbox" to="." method="_on_healbox_area_entered"]
@@ -145,3 +183,6 @@ shape = SubResource("CircleShape2D_2xmo7")
 [connection signal="area_exited" from="controller/Button down" to="." method="_on_button_down_area_exited"]
 [connection signal="area_entered" from="controller/Button hit" to="." method="_on_button_hit_area_entered"]
 [connection signal="area_exited" from="controller/Button hit" to="." method="_on_button_hit_area_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="items/Shield" to="." method="_on_shield_area_entered"]
+[connection signal="area_exited" from="items/Shield" to="." method="_on_shield_area_exited"]
