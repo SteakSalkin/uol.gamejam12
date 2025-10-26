@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$ Path2D/PathFollow2D/Zahnrad.rotate( 2 * delta)
+	$Path2D/PathFollow2D/Taubenbild/Zahnrad.rotate( 2 * delta)
 
 
 func _on_timer_timeout() -> void:
