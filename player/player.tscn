@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckdj6vcka7v2d"]
+[gd_scene load_steps=19 format=3 uid="uid://ckdj6vcka7v2d"]
 
 [ext_resource type="Texture2D" uid="uid://cx81q5xk2bs7y" path="res://assets/pigeon.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://da1tss52h4lpf" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="AudioStream" uid="uid://d3rl6y5fpex0y" path="res://assets/combat sound 2.mp3" id="2_8t03j"]
+[ext_resource type="AudioStream" uid="uid://ohidbq6bu1na" path="res://assets/Looping sound.wav" id="3_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://d3s86lmbfol3a" path="res://assets/russicher_hut.png" id="3_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://b4t4atquhjmx4" path="res://assets/kommunisten_symbol.svg" id="4_yw30f"]
 [ext_resource type="Texture2D" uid="uid://bbsydap2g1ent" path="res://assets/controller2.png" id="5_hg6s5"]
@@ -66,9 +67,12 @@ shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_8t03j")
+volume_db = 2.0
 area_mask = 0
 
 [node name="HealSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2ieo8")
+volume_db = 20.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2

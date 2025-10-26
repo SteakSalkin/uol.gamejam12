@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bb0kw0xl5qc8x"]
+[gd_scene load_steps=40 format=4 uid="uid://bb0kw0xl5qc8x"]
 
 [ext_resource type="PackedScene" uid="uid://h6krtr40hd7n" path="res://player/player2.tscn" id="1_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://ckdj6vcka7v2d" path="res://player/player.tscn" id="1_7lnir"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://crvn2w6acff1v" path="res://assets/us_flag.png" id="11_xii2b"]
 [ext_resource type="Texture2D" uid="uid://sp3e0h2vvjlp" path="res://assets/hochspannungsleitungen.png" id="12_rhqlf"]
 [ext_resource type="Texture2D" uid="uid://bt3qu43i0oe8s" path="res://assets/echo_wave.png" id="16_7jqyl"]
+[ext_resource type="AudioStream" uid="uid://dhan7cqwcnnmu" path="res://assets/ending sound.wav" id="17_sui6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qohg2"]
 texture = ExtResource("2_5gx2l")
@@ -1199,6 +1200,7 @@ position = Vector2(-1000, -100)
 
 [node name="Winning Sound" type="AudioStreamPlayer2D" parent="Winning massage"]
 position = Vector2(1000, 100)
+stream = ExtResource("17_sui6v")
 
 [node name="Player 1 Won" type="Label" parent="Winning massage"]
 visible = false

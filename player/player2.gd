@@ -9,6 +9,10 @@ const MAX_HEALTH = 20.0
 const HEAL_AMOUNT = 2.0
 const DAMAGE_AMOUNT = 1.0
 
+const SOUND_TRANSMITTER_TIME = 100.0
+const TIME_BETWEEN_HEALING_SOUNDS = 50.0
+var time_between_healing_sounds = TIME_BETWEEN_HEALING_SOUNDS
+
 var is_flipped = false
 var health = MAX_HEALTH
 var is_touching_player = false
@@ -100,6 +104,11 @@ func get_damage(damage: int) -> void:
 func get_healed(heal: float) -> void:
 	if health < MAX_HEALTH:
 		health += heal
+	if time_between_healing_sounds < 1:
+		time_between_healing_sounds = TIME_BETWEEN_HEALING_SOUNDS
+		$HealSound.play()
+	elif time_between_healing_sounds >= 1:
+		time_between_healing_sounds -= 1
 	$HealthBar.value = health
 
 func die() -> void:
